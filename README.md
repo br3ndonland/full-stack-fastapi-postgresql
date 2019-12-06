@@ -66,11 +66,11 @@ Generate a backend and frontend stack using Python, including interactive API do
 
 ## How to use it
 
-Go to the directoy where you want to create your project and run:
+Go to the directory where you want to create your project and run:
 
 ```bash
 pip install cookiecutter
-cookiecutter https://github.com/tiangolo/full-stack-fastapi-postgresql
+cookiecutter https://github.com/br3ndonland/full-stack-fastapi-postgresql
 ```
 
 ### Generate passwords
