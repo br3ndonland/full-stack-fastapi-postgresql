@@ -1,7 +1,7 @@
-version: '3.3'
+version: "3.3"
 services:
   backend:
-    build: 
+    build:
       context: ./backend
       dockerfile: backend.dockerfile
   celeryworker:
@@ -9,7 +9,7 @@ services:
       context: ./backend
       dockerfile: celeryworker.dockerfile
   frontend:
-    build: 
+    build:
       context: ./frontend
       args:
-          FRONTEND_ENV: ${FRONTEND_ENV-production}
+        FRONTEND_ENV: ${FRONTEND_ENV-production}
