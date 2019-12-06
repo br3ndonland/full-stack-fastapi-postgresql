@@ -1,5 +1,7 @@
 # {{cookiecutter.project_name}}
 
+Generated from [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) template at {{cookiecutter.cookiecutter_url}}.
+
 ## Backend Requirements
 
 - Docker

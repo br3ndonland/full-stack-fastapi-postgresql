@@ -1,4 +1,5 @@
 {
+  "cookiecutter_url": "https://github.com/br3ndonland/full-stack-fastapi-postgresql",
   "project_name": "Base Project",
   "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
   "domain_main": "{{cookiecutter.project_slug}}.com",
