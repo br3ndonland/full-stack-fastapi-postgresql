@@ -2,22 +2,22 @@
 
 ## Backend Requirements
 
-* Docker
-* Docker Compose
+- Docker
+- Docker Compose
 
 ## Frontend Requirements
 
-* Node.js (with `npm`)
+- Node.js (with `npm`)
 
 ## Backend local development
 
-* Start the stack with Docker Compose:
+- Start the stack with Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-* Now you can open your browser and interact with these URLs:
+- Now you can open your browser and interact with these URLs:
 
 Frontend, built with Docker, with routes handled based on the path: http://localhost
 
@@ -57,7 +57,7 @@ Open your editor at `./backend/app/` (instead of the project root: `./`), so tha
 
 Modify or add SQLAlchemy models in `./backend/app/app/db_models/`, Pydantic models in `./backend/app/app/models/`, API endpoints in `./backend/app/app/api/`, CRUD (Create, Read, Update, Delete) utils in `./backend/app/app/crud/`. The easiest might be to copy the ones for Items (models, endpoints, and CRUD utils) and update them to your needs.
 
-Add and modify tasks to the Celery worker in `./backend/app/app/worker.py`. 
+Add and modify tasks to the Celery worker in `./backend/app/app/worker.py`.
 
 If you need to install any additional package to the worker, add it to the file `./backend/app/celeryworker.dockerfile`.
 
@@ -116,7 +116,6 @@ and then hit enter. That runs the live reloading server that auto reloads when i
 Nevertheless, if it doesn't detect a change but a syntax error, it will just stop with an error. But as the container is still alive and you are in a Bash session, you can quickly restart it after fixing the error, running the same command ("up arrow" and "Enter").
 
 ...this previous detail is what makes it useful to have the container alive doing nothing and then, in a Bash session, make it run the live reload server.
-
 
 ### Backend tests
 
@@ -187,7 +186,7 @@ you can copy that URL and modify the "host" to be `localhost` or the domain you 
 http://localhost:8888/token=f20939a41524d021fbfc62b31be8ea4dd9232913476f4397
 ```
 
- and then open it in your browser.
+and then open it in your browser.
 
 You will have a full Jupyter Notebook running inside your container, that has direct access to your database by the name container name, etc. So, you can just copy your backend code and run it directly, without needing to modify it.
 
@@ -199,23 +198,23 @@ As during local development your app directory is mounted as a volume inside the
 
 Make sure you create a "revision" of your models and that you "upgrade" your database with that revision every time you change them. As this is what will update the tables in your database. Otherwise, your application will have errors.
 
-* Start an interactive session in the backend container:
+- Start an interactive session in the backend container:
 
 ```bash
 docker-compose exec backend bash
 ```
 
-* If you created a new model in `./backend/app/app/db_models/`, make sure to import it in `./backend/app/app/db/base.py`, that Python module (`base.py`) that imports all the models will be used by Alembic.
+- If you created a new model in `./backend/app/app/db_models/`, make sure to import it in `./backend/app/app/db/base.py`, that Python module (`base.py`) that imports all the models will be used by Alembic.
 
-* After changing a model (for example, adding a column), inside the container, create a revision, e.g.:
+- After changing a model (for example, adding a column), inside the container, create a revision, e.g.:
 
 ```bash
 alembic revision --autogenerate -m "Add column last_name to User model"
 ```
 
-* Commit to the git repository the files generated in the alembic directory.
+- Commit to the git repository the files generated in the alembic directory.
 
-* After creating the revision, run the migration in the database (this is what will actually change the database):
+- After creating the revision, run the migration in the database (this is what will actually change the database):
 
 ```bash
 alembic upgrade head
@@ -253,7 +252,7 @@ Check all the corresponding available URLs in the section at the end.
 
 ### Develpment in `localhost` with a custom domain
 
-You might want to use something different than `localhost` as the domain. For example, if you are having problems with cookies that need a subdomain, and Chrome is not allowing you to use `localhost`. 
+You might want to use something different than `localhost` as the domain. For example, if you are having problems with cookies that need a subdomain, and Chrome is not allowing you to use `localhost`.
 
 In that case, you have two options: you could use the instructions to modify your system `hosts` file with the instructions below in **Development with a custom IP** or you can just use `localhost.tiangolo.com`, it is set up to point to `localhost` (to the IP `127.0.0.1`) and all its subdomains too. And as it is an actual domain, the browsers will store the cookies you set during development, etc.
 
@@ -273,11 +272,12 @@ In that case, you will need to use a fake local domain (`dev.{{cookiecutter.doma
 
 If you used the default CORS enabled domains, `dev.{{cookiecutter.domain_main}}` was configured to be allowed. If you want a custom one, you need to add it to the list in the variable `BACKEND_CORS_ORIGINS` in the `.env` file.
 
-* Open your `hosts` file with administrative privileges using a text editor:
-  * **Note for Windows**: If you are in Windows, open the main Windows menu, search for "notepad", right click on it, and select the option "open as Administrator" or similar. Then click the "File" menu, "Open file", go to the directory `c:\Windows\System32\Drivers\etc\`, select the option to show "All files" instead of only "Text (.txt) files", and open the `hosts` file.
-  * **Note for Mac and Linux**: Your `hosts` file is probably located at `/etc/hosts`, you can edit it in a terminal running `sudo nano /etc/hosts`.
+- Open your `hosts` file with administrative privileges using a text editor:
 
-* Additional to the contents it might have, add a new line with the custom IP (e.g. `192.168.99.150`) a space character, and your fake local domain: `dev.{{cookiecutter.domain_main}}`.
+  - **Note for Windows**: If you are in Windows, open the main Windows menu, search for "notepad", right click on it, and select the option "open as Administrator" or similar. Then click the "File" menu, "Open file", go to the directory `c:\Windows\System32\Drivers\etc\`, select the option to show "All files" instead of only "Text (.txt) files", and open the `hosts` file.
+  - **Note for Mac and Linux**: Your `hosts` file is probably located at `/etc/hosts`, you can edit it in a terminal running `sudo nano /etc/hosts`.
+
+- Additional to the contents it might have, add a new line with the custom IP (e.g. `192.168.99.150`) a space character, and your fake local domain: `dev.{{cookiecutter.domain_main}}`.
 
 The new line might look like:
 
@@ -285,8 +285,8 @@ The new line might look like:
 192.168.99.100    dev.{{cookiecutter.domain_main}}
 ```
 
-* Save the file.
-  * **Note for Windows**: Make sure you save the file as "All files", without an extension of `.txt`. By default, Windows tries to add the extension. Make sure the file is saved as is, without extension.
+- Save the file.
+  - **Note for Windows**: Make sure you save the file as "All files", without an extension of `.txt`. By default, Windows tries to add the extension. Make sure the file is saved as is, without extension.
 
 ...that will make your computer think that the fake local domain is served by that custom IP, and when you open that URL in your browser, it will talk directly to your locally running server when it is asked to go to `dev.{{cookiecutter.domain_main}}` and think that it is a remote server while it is actually running in your computer.
 
@@ -302,13 +302,13 @@ If you need to use your local stack with a different domain than `localhost`, yo
 
 To simplify your Docker Compose setup, for example, so that the API explorer, Swagger UI, knows where is your API, you should let it know you are using that domain for development. You will need to edit 1 line in 2 files.
 
-* Open the file located at `./.env`. It would have a line like:
+- Open the file located at `./.env`. It would have a line like:
 
 ```
 DOMAIN=localhost
 ```
 
-* Change it to the domain you are going to use, e.g.:
+- Change it to the domain you are going to use, e.g.:
 
 ```
 DOMAIN=localhost.tiangolo.com
@@ -316,13 +316,13 @@ DOMAIN=localhost.tiangolo.com
 
 That variable will be used by some of the local development `docker-compose.dev.*.yml` files, for example, to tell Swagger UI to use that domain for the API.
 
-* Now open the file located at `./frontend/.env`. It would have a line like:
+- Now open the file located at `./frontend/.env`. It would have a line like:
 
 ```
 VUE_APP_DOMAIN_DEV=localhost
 ```
 
-* Change that line to the domain you are going to use, e.g.:
+- Change that line to the domain you are going to use, e.g.:
 
 ```
 VUE_APP_DOMAIN_DEV=localhost.tiangolo.com
@@ -340,7 +340,7 @@ and check all the corresponding available URLs in the section at the end.
 
 ## Frontend development
 
-* Enter the `frontend` directory, install the NPM packages and start the live server using the `npm` scripts:
+- Enter the `frontend` directory, install the NPM packages and start the live server using the `npm` scripts:
 
 ```bash
 cd frontend
@@ -365,7 +365,7 @@ VUE_APP_ENV=development
 # VUE_APP_ENV=staging
 ```
 
-* Switch the comment, to:
+- Switch the comment, to:
 
 ```
 # VUE_APP_ENV=development
@@ -388,7 +388,6 @@ That's specially important for a service running a database. But the same proble
 
 To solve that, you can put constraints in the services that use one or more data volumes (like databases) to make them be deployed to a Docker node with a specific label. And of course, you need to have that label assigned to one (only one) of your nodes.
 
-
 #### Adding services with volumes
 
 For each service that uses a volume (databases, services with uploaded files, etc) you should have a label constraint in your `docker-compose.deploy.volumes-placement.yml` file.
@@ -406,11 +405,11 @@ STACK_NAME={{cookiecutter.docker_swarm_stack_name_staging}} sh ./scripts/deploy.
 To use and expand that environment variable inside the `docker-compose.deploy.volumes-placement.yml` files you can add the constraints to the services like:
 
 ```yaml
-version: '3'
+version: "3"
 services:
   db:
     volumes:
-      - 'app-db-data:/var/lib/postgresql/data/pgdata'
+      - "app-db-data:/var/lib/postgresql/data/pgdata"
     deploy:
       placement:
         constraints:
@@ -420,11 +419,11 @@ services:
 note the `${STACK_NAME}`. In the script `./scripts/deploy.sh`, that `docker-compose.deploy.volumes-placement.yml` would be converted, and saved to a file `docker-stack.yml` containing:
 
 ```yaml
-version: '3'
+version: "3"
 services:
   db:
     volumes:
-      - 'app-db-data:/var/lib/postgresql/data/pgdata'
+      - "app-db-data:/var/lib/postgresql/data/pgdata"
     deploy:
       placement:
         constraints:
@@ -434,7 +433,6 @@ services:
 If you add more volumes to your stack, you need to make sure you add the corresponding constraints to the services that use that named volume.
 
 Then you have to create those labels in some nodes in your Docker Swarm mode cluster. You can use `docker-auto-labels` to do it automatically.
-
 
 #### `docker-auto-labels`
 
@@ -458,9 +456,9 @@ You can run that command every time you deploy, right before deploying, as it do
 
 If you don't want to use `docker-auto-labels` or for any reason you want to manually assign the constraint labels to specific nodes in your Docker Swarm mode cluster, you can do the following:
 
-* First, connect via SSH to your Docker Swarm mode cluster.
+- First, connect via SSH to your Docker Swarm mode cluster.
 
-* Then check the available nodes with:
+- Then check the available nodes with:
 
 ```bash
 docker node ls
@@ -477,13 +475,13 @@ c4sdf2342asdfasd4234234ii     snake.example.com      Ready               Active 
 
 then chose a node from the list. For example, `dog.example.com`.
 
-* Add the label to that node. Use as label the name of the stack you are deploying followed by a dot (`.`) followed by the named volume, and as value, just `true`, e.g.:
+- Add the label to that node. Use as label the name of the stack you are deploying followed by a dot (`.`) followed by the named volume, and as value, just `true`, e.g.:
 
 ```bash
 docker node update --label-add {{cookiecutter.docker_swarm_stack_name_main}}.app-db-data=true dog.example.com
 ```
 
-* Then you need to do the same for each stack version you have. For example, for staging you could do:
+- Then you need to do the same for each stack version you have. For example, for staging you could do:
 
 ```bash
 docker node update --label-add {{cookiecutter.docker_swarm_stack_name_staging}}.app-db-data=true cat.example.com
@@ -503,10 +501,10 @@ Here are the steps in detail:
 
 1. **Build your app images**
 
-* Set these environment variables, prepended to the next command:
-  * `TAG=prod`
-  * `FRONTEND_ENV=production`
-* Use the provided `scripts/build.sh` file with those environment variables:
+- Set these environment variables, prepended to the next command:
+  - `TAG=prod`
+  - `FRONTEND_ENV=production`
+- Use the provided `scripts/build.sh` file with those environment variables:
 
 ```bash
 TAG=prod FRONTEND_ENV=production bash ./scripts/build.sh
@@ -518,10 +516,10 @@ TAG=prod FRONTEND_ENV=production bash ./scripts/build.sh
 
 If you are using a registry and pushing your images, you can omit running the previous script and instead using this one, in a single shot.
 
-* Set these environment variables:
-  * `TAG=prod`
-  * `FRONTEND_ENV=production`
-* Use the provided `scripts/build-push.sh` file with those environment variables:
+- Set these environment variables:
+  - `TAG=prod`
+  - `FRONTEND_ENV=production`
+- Use the provided `scripts/build-push.sh` file with those environment variables:
 
 ```bash
 TAG=prod FRONTEND_ENV=production bash ./scripts/build-push.sh
@@ -529,12 +527,12 @@ TAG=prod FRONTEND_ENV=production bash ./scripts/build-push.sh
 
 3. **Deploy your stack**
 
-* Set these environment variables:
-  * `DOMAIN={{cookiecutter.domain_main}}`
-  * `TRAEFIK_TAG={{cookiecutter.traefik_constraint_tag}}`
-  * `STACK_NAME={{cookiecutter.docker_swarm_stack_name_main}}`
-  * `TAG=prod`
-* Use the provided `scripts/deploy.sh` file with those environment variables:
+- Set these environment variables:
+  - `DOMAIN={{cookiecutter.domain_main}}`
+  - `TRAEFIK_TAG={{cookiecutter.traefik_constraint_tag}}`
+  - `STACK_NAME={{cookiecutter.docker_swarm_stack_name_main}}`
+  - `TAG=prod`
+- Use the provided `scripts/deploy.sh` file with those environment variables:
 
 ```bash
 DOMAIN={{cookiecutter.domain_main}} \
@@ -584,11 +582,10 @@ If you use any other CI / CD provider, you can base your deployment from that `.
 
 GitLab CI is configured assuming 2 environments following GitLab flow:
 
-* `prod` (production) from the `production` branch.
-* `stag` (staging) from the `master` branch.
+- `prod` (production) from the `production` branch.
+- `stag` (staging) from the `master` branch.
 
 If you need to add more environments, for example, you could imagine using a client-approved `preprod` branch, you can just copy the configurations in `.gitlab-ci.yml` for `stag` and rename the corresponding variables. All the Docker Compose files are configured to support as many environments as you need, so that you only need to modify `.gitlab-ci.yml` (or whichever CI system configuration you are using).
-
 
 ## Docker Compose files
 
@@ -624,24 +621,24 @@ The `docker-compose.shared.*.yml` files are used at several stages and contain s
 
 The purpose of each Docker Compose file is:
 
-* `docker-compose.deploy.build.yml`: build directories and `Dockerfile`s, for deployment (the building process for development has a little difference).
-* `docker-compose.deploy.command.yml`: command overrides for images only during deployment. Initially only for the main Traefik proxy, making it run in a Docker Swarm mode cluster.
-* `docker-compose.deploy.images.yml`: image names to be created, with environment variables for the specific tag.
-* `docker-compose.deploy.labels.yml`: labels for deployment, the configurations to make the internal Traefik proxy serve some services on specific URLs, some with basic HTTP auth, etc. Also labels used in the internal Traefik proxy container to make it talk to the public Traefik proxy (outside of this stack) and make it send requests for this domain, generate HTTPS certificates, etc.
-* `docker-compose.deploy.networks.yml`: networks that have to be used and shared by containers that need to be able to talk to the public Traefik proxy (when a service requires a domain for itself).
-* `docker-compose.deploy.volumes-placement.yml`: volume declarations, volumes used by stateful services (as databases) and volume placement constraints, to make those services always run on the node that has their volumes, even after stack updates.
-* `docker-compose.dev.build.yml`: build directories and `Dockerfile`s, for local development, sets a built-time argument that then is used in the `Dockerfile`s to install and configure helper tools exclusively for development.
-* `docker-compose.dev.command.yml`: command overrides for local development. To tell the internal Traefik proxy to work with a local Docker in the host instead of a Docker Swarm mode cluster. And (commented out but ready to be used) overrides to make the containers run an infinite loop while keeping alive to be able to run the development server manually or do any other interactive work.
-* `docker-compose.dev.env.yml`: development environment variable overrides.
-* `docker-compose.dev.labels.yml`: local development labels, to be used by the local development Traefik proxy. They have to be declared in a different place than for deployment.
-* `docker-compose.dev.networks.yml`: local development networks, to enable interactively talking to the backend.
-* `docker-compose.dev.ports.yml`: local development port mappings.
-* `docker-compose.dev.volumes.yml`: local development mounted volumes, mainly to map the development code directory inside the container, for fast development without needing to re-build the images.
-* `docker-compose.shared.admin.yml`: additional services for administration or utilities with their configurations, like PGAdmin and Swagger, that are not needed during testing and use external images (don't need to be built or create images).
-* `docker-compose.shared.base-images.yml`: base Docker images used without modification for shared services, as databases. Used in deployment, development, testing, etc.
-* `docker-compose.shared.depends.yml`: dependencies between main services with `depends_on`, used in deployment, development, testing, etc.
-* `docker-compose.shared.env.yml`: environment variables used by services, as database passwords, secret keys, etc.
-* `docker-compose.test.yml`: specific additional container to be used only during testing, mainly the container that tests the backend and the APIs.
+- `docker-compose.deploy.build.yml`: build directories and `Dockerfile`s, for deployment (the building process for development has a little difference).
+- `docker-compose.deploy.command.yml`: command overrides for images only during deployment. Initially only for the main Traefik proxy, making it run in a Docker Swarm mode cluster.
+- `docker-compose.deploy.images.yml`: image names to be created, with environment variables for the specific tag.
+- `docker-compose.deploy.labels.yml`: labels for deployment, the configurations to make the internal Traefik proxy serve some services on specific URLs, some with basic HTTP auth, etc. Also labels used in the internal Traefik proxy container to make it talk to the public Traefik proxy (outside of this stack) and make it send requests for this domain, generate HTTPS certificates, etc.
+- `docker-compose.deploy.networks.yml`: networks that have to be used and shared by containers that need to be able to talk to the public Traefik proxy (when a service requires a domain for itself).
+- `docker-compose.deploy.volumes-placement.yml`: volume declarations, volumes used by stateful services (as databases) and volume placement constraints, to make those services always run on the node that has their volumes, even after stack updates.
+- `docker-compose.dev.build.yml`: build directories and `Dockerfile`s, for local development, sets a built-time argument that then is used in the `Dockerfile`s to install and configure helper tools exclusively for development.
+- `docker-compose.dev.command.yml`: command overrides for local development. To tell the internal Traefik proxy to work with a local Docker in the host instead of a Docker Swarm mode cluster. And (commented out but ready to be used) overrides to make the containers run an infinite loop while keeping alive to be able to run the development server manually or do any other interactive work.
+- `docker-compose.dev.env.yml`: development environment variable overrides.
+- `docker-compose.dev.labels.yml`: local development labels, to be used by the local development Traefik proxy. They have to be declared in a different place than for deployment.
+- `docker-compose.dev.networks.yml`: local development networks, to enable interactively talking to the backend.
+- `docker-compose.dev.ports.yml`: local development port mappings.
+- `docker-compose.dev.volumes.yml`: local development mounted volumes, mainly to map the development code directory inside the container, for fast development without needing to re-build the images.
+- `docker-compose.shared.admin.yml`: additional services for administration or utilities with their configurations, like PGAdmin and Swagger, that are not needed during testing and use external images (don't need to be built or create images).
+- `docker-compose.shared.base-images.yml`: base Docker images used without modification for shared services, as databases. Used in deployment, development, testing, etc.
+- `docker-compose.shared.depends.yml`: dependencies between main services with `depends_on`, used in deployment, development, testing, etc.
+- `docker-compose.shared.env.yml`: environment variables used by services, as database passwords, secret keys, etc.
+- `docker-compose.test.yml`: specific additional container to be used only during testing, mainly the container that tests the backend and the APIs.
 
 ## URLs
 
@@ -678,7 +675,7 @@ Automatic Alternative Docs (ReDoc): https://{{cookiecutter.domain_staging}}/redo
 PGAdmin: https://pgadmin.{{cookiecutter.domain_staging}}
 
 Flower: https://flower.{{cookiecutter.domain_staging}}
-    
+
 ### Development
 
 Development URLs, for local development.
