@@ -13,27 +13,21 @@ Generated from [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) te
 
 ## Backend local development
 
-- Start the stack with Docker Compose:
+Start the stack with Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-- Now you can open your browser and interact with these URLs:
+Now you can open your browser and interact with these URLs:
 
-Frontend, built with Docker, with routes handled based on the path: http://localhost
-
-Backend, JSON based web API based on OpenAPI: http://localhost/api/
-
-Automatic interactive documentation with Swagger UI (from the OpenAPI backend): http://localhost/docs
-
-Alternative automatic documentation with ReDoc (from the OpenAPI backend): http://localhost/redoc
-
-PGAdmin, PostgreSQL web administration: http://localhost:5050
-
-Flower, administration of Celery tasks: http://localhost:5555
-
-Traefik UI, to see how the routes are being handled by the proxy: http://localhost:8090
+- Frontend, built with Docker, with routes handled based on the path: http://localhost
+- Backend, JSON based web API based on OpenAPI: http://localhost/api/
+- Automatic interactive documentation with Swagger UI (from the OpenAPI backend): http://localhost/docs
+- Alternative automatic documentation with ReDoc (from the OpenAPI backend): http://localhost/redoc
+- PGAdmin, PostgreSQL web administration: http://localhost:5050
+- Flower, administration of Celery tasks: http://localhost:5555
+- Traefik UI, to see how the routes are being handled by the proxy: http://localhost:8090
 
 **Note**: The first time you start your stack, it might take a minute for it to be ready. While the backend waits for the database to be ready and configures everything. You can check the logs to monitor it.
 
@@ -202,39 +196,38 @@ Make sure you create a "revision" of your models and that you "upgrade" your dat
 
 - Start an interactive session in the backend container:
 
-```bash
-docker-compose exec backend bash
-```
+  ```bash
+  docker-compose exec backend bash
+  ```
 
 - If you created a new model in `./backend/app/app/db_models/`, make sure to import it in `./backend/app/app/db/base.py`, that Python module (`base.py`) that imports all the models will be used by Alembic.
 
 - After changing a model (for example, adding a column), inside the container, create a revision, e.g.:
 
-```bash
-alembic revision --autogenerate -m "Add column last_name to User model"
-```
+  ```bash
+  alembic revision --autogenerate -m "Add column last_name to User model"
+  ```
 
 - Commit to the git repository the files generated in the alembic directory.
-
 - After creating the revision, run the migration in the database (this is what will actually change the database):
 
-```bash
-alembic upgrade head
-```
+  ```bash
+  alembic upgrade head
+  ```
 
-If you don't want to use migrations at all, uncomment the line in the file at `./backend/app/app/db/init_db.py` with:
+- If you don't want to use migrations at all, uncomment the line in the file at `./backend/app/app/db/init_db.py` with:
 
-```python
-Base.metadata.create_all(bind=engine)
-```
+  ```python
+  Base.metadata.create_all(bind=engine)
+  ```
 
-and comment the line in the file `prestart.sh` that contains:
+- and comment the line in the file `prestart.sh` that contains:
 
-```bash
-alembic upgrade head
-```
+  ```bash
+  alembic upgrade head
+  ```
 
-If you don't want to start with the default models and want to remove them / modify them, from the beginning, without having any previous revision, you can remove the revision files (`.py` Python files) under `./backend/app/alembic/versions/`. And then create a first migration as described above.
+- If you don't want to start with the default models and want to remove them / modify them, from the beginning, without having any previous revision, you can remove the revision files (`.py` Python files) under `./backend/app/alembic/versions/`. And then create a first migration as described above.
 
 ### Development with Docker Toolbox
 
@@ -279,14 +272,10 @@ If you used the default CORS enabled domains, `dev.{{cookiecutter.domain_main}}`
   - **Note for Windows**: If you are in Windows, open the main Windows menu, search for "notepad", right click on it, and select the option "open as Administrator" or similar. Then click the "File" menu, "Open file", go to the directory `c:\Windows\System32\Drivers\etc\`, select the option to show "All files" instead of only "Text (.txt) files", and open the `hosts` file.
   - **Note for Mac and Linux**: Your `hosts` file is probably located at `/etc/hosts`, you can edit it in a terminal running `sudo nano /etc/hosts`.
 
-- Additional to the contents it might have, add a new line with the custom IP (e.g. `192.168.99.150`) a space character, and your fake local domain: `dev.{{cookiecutter.domain_main}}`.
-
-The new line might look like:
-
-```
-192.168.99.100    dev.{{cookiecutter.domain_main}}
-```
-
+- Additional to the contents it might have, add a new line with the custom IP (e.g. `192.168.99.150`) a space character, and your fake local domain: `dev.{{cookiecutter.domain_main}}`. The new line might look like:
+  ```
+  192.168.99.100    dev.{{cookiecutter.domain_main}}
+  ```
 - Save the file.
   - **Note for Windows**: Make sure you save the file as "All files", without an extension of `.txt`. By default, Windows tries to add the extension. Make sure the file is saved as is, without extension.
 
@@ -294,7 +283,7 @@ The new line might look like:
 
 To configure it in your stack, follow the section **Change the development "domain"** below, using the domain `dev.{{cookiecutter.domain_main}}`.
 
-After performing those steps you should be able to open: http://dev.{{cookiecutter.domain_main}} and it will be server by your stack in `localhost`.
+After performing those steps you should be able to open: `http://dev.{{cookiecutter.domain_main}}` and it will be served by your stack in `localhost`.
 
 Check all the corresponding available URLs in the section at the end.
 
@@ -302,29 +291,29 @@ Check all the corresponding available URLs in the section at the end.
 
 If you need to use your local stack with a different domain than `localhost`, you need to make sure the domain you use points to the IP where your stack is set up. See the different ways to achieve that in the sections above (i.e. using Docker Toolbox with `local.dockertoolbox.tiangolo.com`, using `localhost.tiangolo.com` or using `dev.{{cookiecutter.domain_main}}`).
 
-To simplify your Docker Compose setup, for example, so that the API explorer, Swagger UI, knows where is your API, you should let it know you are using that domain for development. You will need to edit 1 line in 2 files.
+To simplify your Docker Compose setup, for example, so that the API explorer, Swagger UI, knows where is your API, you should let it know you are using that domain for development. You will need to edit 1 line in 2 files:
 
 - Open the file located at `./.env`. It would have a line like:
 
-```
-DOMAIN=localhost
-```
+  ```
+  DOMAIN=localhost
+  ```
 
 - Change it to the domain you are going to use, e.g.:
 
-```
-DOMAIN=localhost.tiangolo.com
-```
+  ```
+  DOMAIN=localhost.tiangolo.com
+  ```
 
 That variable will be used by some of the local development `docker-compose.dev.*.yml` files, for example, to tell Swagger UI to use that domain for the API.
 
-- Now open the file located at `./frontend/.env`. It would have a line like:
+Now open the file located at `./frontend/.env`. It would have a line like:
 
 ```
 VUE_APP_DOMAIN_DEV=localhost
 ```
 
-- Change that line to the domain you are going to use, e.g.:
+Change that line to the domain you are going to use, e.g.:
 
 ```
 VUE_APP_DOMAIN_DEV=localhost.tiangolo.com
@@ -650,105 +639,71 @@ These are the URLs that will be used and generated by the project.
 
 Production URLs, from the branch `production`.
 
-Frontend: https://{{cookiecutter.domain_main}}
-
-Backend: https://{{cookiecutter.domain_main}}/api/
-
-Automatic Interactive Docs (Swagger UI): https://{{cookiecutter.domain_main}}/docs
-
-Automatic Alternative Docs (ReDoc): https://{{cookiecutter.domain_main}}/redoc
-
-PGAdmin: https://pgadmin.{{cookiecutter.domain_main}}
-
-Flower: https://flower.{{cookiecutter.domain_main}}
+- Frontend: https://{{cookiecutter.domain_main}}
+- Backend: https://{{cookiecutter.domain_main}}/api/
+- Automatic Interactive Docs (Swagger UI): https://{{cookiecutter.domain_main}}/docs
+- Automatic Alternative Docs (ReDoc): https://{{cookiecutter.domain_main}}/redoc
+- PGAdmin: https://pgadmin.{{cookiecutter.domain_main}}
+- Flower: https://flower.{{cookiecutter.domain_main}}
 
 ### Staging
 
 Staging URLs, from the branch `master`.
 
-Frontend: https://{{cookiecutter.domain_staging}}
-
-Backend: https://{{cookiecutter.domain_staging}}/api/
-
-Automatic Interactive Docs (Swagger UI): https://{{cookiecutter.domain_staging}}/docs
-
-Automatic Alternative Docs (ReDoc): https://{{cookiecutter.domain_staging}}/redoc
-
-PGAdmin: https://pgadmin.{{cookiecutter.domain_staging}}
-
-Flower: https://flower.{{cookiecutter.domain_staging}}
+- Frontend: https://{{cookiecutter.domain_staging}}
+- Backend: https://{{cookiecutter.domain_staging}}/api/
+- Automatic Interactive Docs (Swagger UI): https://{{cookiecutter.domain_staging}}/docs
+- Automatic Alternative Docs (ReDoc): https://{{cookiecutter.domain_staging}}/redoc
+- PGAdmin: https://pgadmin.{{cookiecutter.domain_staging}}
+- Flower: https://flower.{{cookiecutter.domain_staging}}
 
 ### Development
 
 Development URLs, for local development.
 
-Frontend: http://localhost
-
-Backend: http://localhost/api/
-
-Automatic Interactive Docs (Swagger UI): https://localhost/docs
-
-Automatic Alternative Docs (ReDoc): https://localhost/redoc
-
-PGAdmin: http://localhost:5050
-
-Flower: http://localhost:5555
-
-Traefik UI: http://localhost:8090
+- Frontend: http://localhost
+- Backend: http://localhost/api/
+- Automatic Interactive Docs (Swagger UI): https://localhost/docs
+- Automatic Alternative Docs (ReDoc): https://localhost/redoc
+- PGAdmin: http://localhost:5050
+- Flower: http://localhost:5555
+- Traefik UI: http://localhost:8090
 
 ### Development with Docker Toolbox
 
 Development URLs, for local development.
 
-Frontend: http://local.dockertoolbox.tiangolo.com
-
-Backend: http://local.dockertoolbox.tiangolo.com/api/
-
-Automatic Interactive Docs (Swagger UI): https://local.dockertoolbox.tiangolo.com/docs
-
-Automatic Alternative Docs (ReDoc): https://local.dockertoolbox.tiangolo.com/redoc
-
-PGAdmin: http://local.dockertoolbox.tiangolo.com:5050
-
-Flower: http://local.dockertoolbox.tiangolo.com:5555
-
-Traefik UI: http://local.dockertoolbox.tiangolo.com:8090
+- Frontend: http://local.dockertoolbox.tiangolo.com
+- Backend: http://local.dockertoolbox.tiangolo.com/api/
+- Automatic Interactive Docs (Swagger UI): https://local.dockertoolbox.tiangolo.com/docs
+- Automatic Alternative Docs (ReDoc): https://local.dockertoolbox.tiangolo.com/redoc
+- PGAdmin: http://local.dockertoolbox.tiangolo.com:5050
+- Flower: http://local.dockertoolbox.tiangolo.com:5555
+- Traefik UI: http://local.dockertoolbox.tiangolo.com:8090
 
 ### Development with a custom IP
 
 Development URLs, for local development.
 
-Frontend: http://dev.{{cookiecutter.domain_main}}
-
-Backend: http://dev.{{cookiecutter.domain_main}}/api/
-
-Automatic Interactive Docs (Swagger UI): https://dev.{{cookiecutter.domain_main}}/docs
-
-Automatic Alternative Docs (ReDoc): https://dev.{{cookiecutter.domain_main}}/redoc
-
-PGAdmin: http://dev.{{cookiecutter.domain_main}}:5050
-
-Flower: http://dev.{{cookiecutter.domain_main}}:5555
-
-Traefik UI: http://dev.{{cookiecutter.domain_main}}:8090
+- Frontend: http://dev.{{cookiecutter.domain_main}}
+- Backend: http://dev.{{cookiecutter.domain_main}}/api/
+- Automatic Interactive Docs (Swagger UI): https://dev.{{cookiecutter.domain_main}}/docs
+- Automatic Alternative Docs (ReDoc): https://dev.{{cookiecutter.domain_main}}/redoc
+- PGAdmin: http://dev.{{cookiecutter.domain_main}}:5050
+- Flower: http://dev.{{cookiecutter.domain_main}}:5555
+- Traefik UI: http://dev.{{cookiecutter.domain_main}}:8090
 
 ### Development in localhost with a custom domain
 
 Development URLs, for local development.
 
-Frontend: http://localhost.tiangolo.com
-
-Backend: http://localhost.tiangolo.com/api/
-
-Automatic Interactive Docs (Swagger UI): https://localhost.tiangolo.com/docs
-
-Automatic Alternative Docs (ReDoc): https://localhost.tiangolo.com/redoc
-
-PGAdmin: http://localhost.tiangolo.com:5050
-
-Flower: http://localhost.tiangolo.com:5555
-
-Traefik UI: http://localhost.tiangolo.com:8090
+- Frontend: http://localhost.tiangolo.com
+- Backend: http://localhost.tiangolo.com/api/
+- Automatic Interactive Docs (Swagger UI): https://localhost.tiangolo.com/docs
+- Automatic Alternative Docs (ReDoc): https://localhost.tiangolo.com/redoc
+- PGAdmin: http://localhost.tiangolo.com:5050
+- Flower: http://localhost.tiangolo.com:5555
+- Traefik UI: http://localhost.tiangolo.com:8090
 
 ## Project generation and updating, or re-generating
 
