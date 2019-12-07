@@ -13,7 +13,6 @@ Generate a backend and frontend stack using Python, including interactive API do
   - [Dashboard - Create User](#dashboard---create-user)
 - [How to use it](#how-to-use-it)
 - [More details](#more-details)
-- [Sibling project generators](#sibling-project-generators)
 - [License](#license)
 
 ## Features
@@ -93,14 +92,10 @@ cookiecutter https://github.com/br3ndonland/full-stack-fastapi-postgresql
 
 ## More details
 
+- This repository was forked from [tiangolo/full-stack-fastapi-postgresql](https://github.com/tiangolo/full-stack-fastapi-postgresql), which was originally based on [tiangolo/full-stack-fastapi-couchbase](https://github.com/tiangolo/full-stack-fastapi-couchbase).
 - See the [wiki](https://github.com/br3ndonland/full-stack-fastapi-postgresql/wiki) for more details on how to use the project.
 - See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) if you would like to contribute to the project.
 - After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can pre-read [the project `README.md` template here too](./{{cookiecutter.project_slug}}/README.md).
-
-## Sibling project generators
-
-- Forked from [tiangolo/full-stack-fastapi-postgresql](https://github.com/tiangolo/full-stack-fastapi-postgresql)
-- Based on [tiangolo/full-stack-fastapi-couchbase](https://github.com/tiangolo/full-stack-fastapi-couchbase).
 
 ## License
 
