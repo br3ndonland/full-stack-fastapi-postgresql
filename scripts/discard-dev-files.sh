@@ -1,3 +1,5 @@
+#! /usr/bin/env sh
+
 rm -rf \{\{cookiecutter.project_slug\}\}/.git
 rm -rf \{\{cookiecutter.project_slug\}\}/backend/app/Pipfile.lock
 rm -rf \{\{cookiecutter.project_slug\}\}/frontend/node_modules
