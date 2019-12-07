@@ -102,4 +102,4 @@ After using this generator, your new project (the directory created) will contai
 
 ## License
 
-This project is licensed under the terms of the MIT license.
+This project is licensed under the terms of the [MIT license](https://choosealicense.com/licenses/mit/).
