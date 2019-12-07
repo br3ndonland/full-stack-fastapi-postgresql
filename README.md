@@ -97,7 +97,8 @@ After using this generator, your new project (the directory created) will contai
 
 ## Sibling project generators
 
-- Based on Couchbase: [https://github.com/tiangolo/full-stack-fastapi-couchbase](https://github.com/tiangolo/full-stack-fastapi-couchbase).
+- Forked from [tiangolo/full-stack-fastapi-postgresql](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+- Based on [tiangolo/full-stack-fastapi-couchbase](https://github.com/tiangolo/full-stack-fastapi-couchbase).
 
 ## License
 
