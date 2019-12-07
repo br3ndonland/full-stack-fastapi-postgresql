@@ -4,22 +4,6 @@
 
 Generate a backend and frontend stack using Python, including interactive API documentation.
 
-### Interactive API documentation
-
-[![API docs](img/docs.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
-
-### Alternative API documentation
-
-[![API docs](img/redoc.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
-
-### Dashboard Login
-
-[![API docs](img/login.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
-
-### Dashboard - Create User
-
-[![API docs](img/dashboard.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
-
 ## Features
 
 - Full **Docker** integration (Docker based).
@@ -63,6 +47,22 @@ Generate a backend and frontend stack using Python, including interactive API do
 - Load balancing between frontend and backend with **Traefik**, so you can have both under the same domain, separated by path, but served by different containers.
 - Traefik integration, including Let's Encrypt **HTTPS** certificates automatic generation.
 - GitLab **CI** (continuous integration), including frontend and backend testing.
+
+### Interactive API documentation
+
+[![API docs](img/docs.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+
+### Alternative API documentation
+
+[![API docs](img/redoc.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+
+### Dashboard Login
+
+[![API docs](img/login.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+
+### Dashboard - Create User
+
+[![API docs](img/dashboard.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
 
 ## How to use it
 
