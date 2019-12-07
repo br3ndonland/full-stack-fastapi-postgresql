@@ -45,7 +45,7 @@ Generate a backend and frontend stack using Python, including interactive API do
 - **PGAdmin** for PostgreSQL database, you can modify it to use PHPMyAdmin and MySQL easily.
 - **Flower** for Celery jobs monitoring.
 - Load balancing between frontend and backend with **Traefik**, so you can have both under the same domain, separated by path, but served by different containers.
-- Traefik integration, including Let's Encrypt **HTTPS** certificates automatic generation.
+- Traefik integration, including automatic generation of Let's Encrypt **HTTPS** certificates.
 - GitLab **CI** (continuous integration), including frontend and backend testing.
 
 ### Interactive API documentation
