@@ -14,5 +14,6 @@ services:
       - default
 
 networks:
-  { { cookiecutter.traefik_public_network } }:
+  # prettier-ignore
+  {{cookiecutter.traefik_public_network}}:
     external: true
