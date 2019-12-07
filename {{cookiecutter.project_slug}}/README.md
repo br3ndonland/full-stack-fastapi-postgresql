@@ -2,6 +2,36 @@
 
 Generated from [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) template at {{cookiecutter.cookiecutter_url}}.
 
+## Table of Contents <!-- omit in toc -->
+
+- [Backend Requirements](#backend-requirements)
+- [Frontend Requirements](#frontend-requirements)
+- [Backend local development](#backend-local-development)
+- [Backend local development, additional details](#backend-local-development-additional-details)
+  - [General workflow](#general-workflow)
+  - [Docker Compose Override](#docker-compose-override)
+  - [Backend tests](#backend-tests)
+  - [Live development with Python Jupyter Notebooks](#live-development-with-python-jupyter-notebooks)
+  - [Migrations](#migrations)
+  - [Development with Docker Toolbox](#development-with-docker-toolbox)
+  - [Develpment in `localhost` with a custom domain](#develpment-in-localhost-with-a-custom-domain)
+  - [Development with a custom IP](#development-with-a-custom-ip)
+  - [Change the development "domain"](#change-the-development-domain)
+- [Frontend development](#frontend-development)
+- [Deployment](#deployment)
+  - [Persisting Docker named volumes](#persisting-docker-named-volumes)
+  - [Deploy to a Docker Swarm mode cluster](#deploy-to-a-docker-swarm-mode-cluster)
+  - [Continuous Integration / Continuous Delivery](#continuous-integration--continuous-delivery)
+- [Docker Compose files](#docker-compose-files)
+- [URLs](#urls)
+  - [Production](#production)
+  - [Staging](#staging)
+  - [Development](#development)
+  - [Development with Docker Toolbox](#development-with-docker-toolbox-1)
+  - [Development with a custom IP](#development-with-a-custom-ip-1)
+  - [Development in localhost with a custom domain](#development-in-localhost-with-a-custom-domain)
+- [Project generation and updating, or re-generating](#project-generation-and-updating-or-re-generating)
+
 ## Backend Requirements
 
 - Docker

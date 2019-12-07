@@ -4,6 +4,30 @@
 
 Generate a backend and frontend stack using Python, including interactive API documentation.
 
+## Table of Contents <!-- omit in toc -->
+
+- [Features](#features)
+  - [Interactive API documentation](#interactive-api-documentation)
+  - [Alternative API documentation](#alternative-api-documentation)
+  - [Dashboard Login](#dashboard-login)
+  - [Dashboard - Create User](#dashboard---create-user)
+- [How to use it](#how-to-use-it)
+  - [Generate passwords](#generate-passwords)
+  - [Input variables](#input-variables)
+- [How to deploy](#how-to-deploy)
+- [More details](#more-details)
+- [Sibling project generators](#sibling-project-generators)
+- [Release Notes](#release-notes)
+  - [Next release](#next-release)
+  - [0.4.0](#040)
+  - [0.3.0](#030)
+  - [0.2.2](#022)
+  - [0.2.1](#021)
+  - [0.2.0](#020)
+  - [0.1.2](#012)
+  - [0.1.1](#011)
+- [License](#license)
+
 ## Features
 
 - Full **Docker** integration (Docker based).
