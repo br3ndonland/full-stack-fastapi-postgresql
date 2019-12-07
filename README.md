@@ -93,7 +93,9 @@ cookiecutter https://github.com/br3ndonland/full-stack-fastapi-postgresql
 
 ## More details
 
-After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can pre-read [the project `README.md` template here too](./{{cookiecutter.project_slug}}/README.md).
+- See the [wiki](https://github.com/br3ndonland/full-stack-fastapi-postgresql/wiki) for more details on how to use the project.
+- See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) if you would like to contribute to the project.
+- After using this generator, your new project (the directory created) will contain an extensive `README.md` with instructions for development, deployment, etc. You can pre-read [the project `README.md` template here too](./{{cookiecutter.project_slug}}/README.md).
 
 ## Sibling project generators
 
