@@ -66,10 +66,16 @@ Generate a backend and frontend stack using Python, including interactive API do
 
 ## How to use it
 
-Go to the directory where you want to create your project and run:
+Install [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) on your system with a package manager, such as [Homebrew](https://brew.sh/) or [pipx](https://pipxproject.github.io/pipx/).
 
 ```bash
-pip install cookiecutter
+brew install cookiecutter
+```
+
+Go to the directory where you want to create your project and run Cookiecutter:
+
+```bash
+cd dev
 cookiecutter https://github.com/br3ndonland/full-stack-fastapi-postgresql
 ```
 
@@ -79,7 +85,7 @@ You will be asked to provide passwords and secret keys for several components. O
 
 ```bash
 openssl rand -hex 32
-# Outputs something like: 99d3b1f01aa639e4a76f4fc281fc834747a543720ba4c8a8648ba755aef9be7f
+# Output like: 99d3b1f01aa639e4a76f4fc281fc834747a543720ba4c8a8648ba755aef9be7f
 ```
 
 Copy the contents and use that as password / secret key. And run that again to generate another secure key.
