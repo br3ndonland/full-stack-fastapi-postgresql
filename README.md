@@ -7,10 +7,7 @@ Generate a backend and frontend stack using Python, including interactive API do
 ## Table of Contents <!-- omit in toc -->
 
 - [Features](#features)
-  - [Interactive API documentation](#interactive-api-documentation)
-  - [Alternative API documentation](#alternative-api-documentation)
-  - [Dashboard Login](#dashboard-login)
-  - [Dashboard - Create User](#dashboard---create-user)
+- [Screenshots](#screenshots)
 - [How to use it](#how-to-use-it)
 - [More details](#more-details)
 - [License](#license)
@@ -59,21 +56,23 @@ Generate a backend and frontend stack using Python, including interactive API do
 - Traefik integration, including automatic generation of Let's Encrypt **HTTPS** certificates.
 - GitLab **CI** (continuous integration), including frontend and backend testing.
 
-### Interactive API documentation
+## Screenshots
 
-[![API docs](img/docs.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+Interactive API documentation
 
-### Alternative API documentation
+<img src="img/docs.png" alt="API docs" width="600px" />
 
-[![API docs](img/redoc.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+Alternative API documentation
 
-### Dashboard Login
+<img src="img/redoc.png" alt="Alternative API docs" width="600px" />
 
-[![API docs](img/login.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+Dashboard Login
 
-### Dashboard - Create User
+<img src="img/login.png" alt="Dashboard login" width="600px" />
 
-[![API docs](img/dashboard.png)](https://github.com/tiangolo/full-stack-fastapi-postgresql)
+Dashboard - Create User
+
+<img src="img/dashboard.png" alt="Dashboard - Create User" width="600px" />
 
 ## How to use it
 
