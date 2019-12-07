@@ -87,7 +87,7 @@ Add and modify tasks to the Celery worker in `./backend/app/app/worker.py`.
 
 If you need to install any additional package to the worker, add it to the file `./backend/app/celeryworker.dockerfile`.
 
-There is an `.env` file that has some Docker Compose default values that allow you to just run `docker-compose up -d` and start working, while still being able to use and share the same Docker Compose files for deployment, avoiding repetition of code and configuration as much as possible.
+There is a `.env` file with [Docker Compose environment variables](https://docs.docker.com/compose/environment-variables/) that allow you to just run `docker-compose up -d` and start working, while still being able to use and share the same Docker Compose files for deployment, avoiding repetition of code and configuration as much as possible.
 
 ### Docker Compose Override
 
