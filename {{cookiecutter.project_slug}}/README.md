@@ -4,10 +4,14 @@ Generated from [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) te
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Backend Requirements](#backend-requirements)
-- [Frontend Requirements](#frontend-requirements)
-- [Backend local development](#backend-local-development)
-- [Backend local development, additional details](#backend-local-development-additional-details)
+- [Description](#description)
+- [Stack](#stack)
+  - [Back-end](#back-end)
+  - [Front-end](#front-end)
+- [Quickstart](#quickstart)
+  - [Back-end](#back-end-1)
+  - [Front-end](#front-end-1)
+- [Back-end development details](#back-end-development-details)
   - [General workflow](#general-workflow)
   - [Docker Compose Override](#docker-compose-override)
   - [Backend tests](#backend-tests)
@@ -16,8 +20,8 @@ Generated from [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) te
   - [Development with Docker Toolbox](#development-with-docker-toolbox)
   - [Develpment in `localhost` with a custom domain](#develpment-in-localhost-with-a-custom-domain)
   - [Development with a custom IP](#development-with-a-custom-ip)
-  - [Change the development "domain"](#change-the-development-domain)
-- [Frontend development](#frontend-development)
+  - [Change the development domain](#change-the-development-domain)
+- [Front-end development details](#front-end-development-details)
 - [Deployment](#deployment)
   - [Persisting Docker named volumes](#persisting-docker-named-volumes)
   - [Deploy to a Docker Swarm mode cluster](#deploy-to-a-docker-swarm-mode-cluster)
@@ -32,16 +36,39 @@ Generated from [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) te
   - [Development in localhost with a custom domain](#development-in-localhost-with-a-custom-domain)
 - [Project generation and updating, or re-generating](#project-generation-and-updating-or-re-generating)
 
-## Backend Requirements
+## Description
+
+This project was generated using a [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) template at [br3ndonland/full-stack-fastapi-postgresql](https://github.com/br3ndonland/full-stack-fastapi-postgresql) with:
+
+```bash
+cookiecutter https://github.com/br3ndonland/full-stack-fastapi-postgresql
+```
+
+See the template [repo](https://github.com/br3ndonland/full-stack-fastapi-postgresql) and [wiki](https://github.com/br3ndonland/full-stack-fastapi-postgresql/wiki) for more details on how to use the project.
+
+## Stack
+
+### Back-end
+
+- [FastAPI](fastapi.tiangolo.com/) is used as the back-end Python framework.
+- PostgreSQL is used as the database.
+- The application runs in several Docker containers using [Docker Compose](https://docs.docker.com/compose/), [Docker Stacks](https://docs.docker.com/compose/bundles/), and [Docker Swarm](https://dockerswarm.rocks/).
+- Asynchronous background jobs can be run with [Celery](https://pypi.org/project/celery/) and [RabbitMQ](https://www.rabbitmq.com/).
+
+### Front-end
+
+- [Vue CLI](https://cli.vuejs.org/) 4 provides the base front-end application.
+- [Vuetify](https://vuetifyjs.com/en/) provides a material design user interface component framework.
+- The Vue.js components are built with [TypeScript](https://www.typescriptlang.org/).
+
+## Quickstart
+
+### Back-end
+
+Install requirements:
 
 - Docker
 - Docker Compose
-
-## Frontend Requirements
-
-- Node.js (with `npm`)
-
-## Backend local development
 
 Start the stack with Docker Compose:
 
@@ -51,13 +78,31 @@ docker-compose up -d
 
 Now you can open your browser and interact with these URLs:
 
-- Frontend, built with Docker, with routes handled based on the path: http://localhost
-- Backend, JSON based web API based on OpenAPI: http://localhost/api/
+- Front-end, built with Docker, with routes handled based on the path: http://localhost
+- Back-end, JSON based web API based on OpenAPI: http://localhost/api/
 - Automatic interactive documentation with Swagger UI (from the OpenAPI backend): http://localhost/docs
 - Alternative automatic documentation with ReDoc (from the OpenAPI backend): http://localhost/redoc
 - PGAdmin, PostgreSQL web administration: http://localhost:5050
 - Flower, administration of Celery tasks: http://localhost:5555
 - Traefik UI, to see how the routes are being handled by the proxy: http://localhost:8090
+
+### Front-end
+
+Install requirements:
+
+- Node.js (with `npm`)
+
+Enter the `frontend` directory, install the NPM packages and start the live server using the `npm` scripts:
+
+```bash
+cd frontend
+npm install
+npm run serve
+```
+
+Then open your browser at http://localhost:8080.
+
+## Back-end development details
 
 **Note**: The first time you start your stack, it might take a minute for it to be ready. While the backend waits for the database to be ready and configures everything. You can check the logs to monitor it.
 
@@ -74,8 +119,6 @@ docker-compose logs backend
 ```
 
 If your Docker is not running in `localhost` (the URLs above wouldn't work) check the sections below on **Development with Docker Toolbox** and **Development with a custom IP**.
-
-## Backend local development, additional details
 
 ### General workflow
 
@@ -269,7 +312,7 @@ As this is a common case, the domain `local.dockertoolbox.tiangolo.com` points t
 
 If you used the default CORS enabled domains while generating the project, `local.dockertoolbox.tiangolo.com` was configured to be allowed. If you didn't, you will need to add it to the list in the variable `BACKEND_CORS_ORIGINS` in the `.env` file.
 
-To configure it in your stack, follow the section **Change the development "domain"** below, using the domain `local.dockertoolbox.tiangolo.com`.
+To configure it in your stack, follow the section **Change the development domain** below, using the domain `local.dockertoolbox.tiangolo.com`.
 
 After performing those steps you should be able to open: http://local.dockertoolbox.tiangolo.com and it will be server by your stack in your Docker Toolbox virtual machine.
 
@@ -283,7 +326,7 @@ In that case, you have two options: you could use the instructions to modify you
 
 If you used the default CORS enabled domains while generating the project, `localhost.tiangolo.com` was configured to be allowed. If you didn't, you will need to add it to the list in the variable `BACKEND_CORS_ORIGINS` in the `.env` file.
 
-To configure it in your stack, follow the section **Change the development "domain"** below, using the domain `localhost.tiangolo.com`.
+To configure it in your stack, follow the section **Change the development domain** below, using the domain `localhost.tiangolo.com`.
 
 After performing those steps you should be able to open: http://localhost.tiangolo.com and it will be server by your stack in `localhost`.
 
@@ -311,13 +354,13 @@ If you used the default CORS enabled domains, `dev.{{cookiecutter.domain_main}}`
 
 ...that will make your computer think that the fake local domain is served by that custom IP, and when you open that URL in your browser, it will talk directly to your locally running server when it is asked to go to `dev.{{cookiecutter.domain_main}}` and think that it is a remote server while it is actually running in your computer.
 
-To configure it in your stack, follow the section **Change the development "domain"** below, using the domain `dev.{{cookiecutter.domain_main}}`.
+To configure it in your stack, follow the section **Change the development domain** below, using the domain `dev.{{cookiecutter.domain_main}}`.
 
 After performing those steps you should be able to open: `http://dev.{{cookiecutter.domain_main}}` and it will be served by your stack in `localhost`.
 
 Check all the corresponding available URLs in the section at the end.
 
-### Change the development "domain"
+### Change the development domain
 
 If you need to use your local stack with a different domain than `localhost`, you need to make sure the domain you use points to the IP where your stack is set up. See the different ways to achieve that in the sections above (i.e. using Docker Toolbox with `local.dockertoolbox.tiangolo.com`, using `localhost.tiangolo.com` or using `dev.{{cookiecutter.domain_main}}`).
 
@@ -359,25 +402,15 @@ docker-compose up -d
 
 and check all the corresponding available URLs in the section at the end.
 
-## Frontend development
+## Front-end development details
 
-- Enter the `frontend` directory, install the NPM packages and start the live server using the `npm` scripts:
-
-```bash
-cd frontend
-npm install
-npm run serve
-```
-
-Then open your browser at http://localhost:8080
-
-Notice that this live server is not running inside Docker, it is for local development, and that is the recommended workflow. Once you are happy with your frontend, you can build the frontend Docker image and start it, to test it in a production-like environment. But compiling the image at every change will not be as productive as running the local development server.
+Note that this live server is not running inside Docker, it is for local development, and that is the recommended workflow. Once you are happy with your front-end, you can build the front-end Docker image and start it, to test it in a production-like environment. But compiling the image at every change will not be as productive as running the local development server.
 
 Check the file `package.json` to see other available options.
 
 If you have Vue CLI installed, you can also run `vue ui` to control, configure, serve and analyse your application using a nice local web user interface.
 
-If you are only developing the frontend (e.g. other team members are developing the backend) and there is a staging environment already deployed, you can make your local development code use that staging API instead of a full local Docker Compose stack.
+If you are only developing the front-end (e.g. other team members are developing the backend) and there is a staging environment already deployed, you can make your local development code use that staging API instead of a full local Docker Compose stack.
 
 To do that, modify the file `./frontend/.env`, there's a section with:
 
@@ -669,8 +702,8 @@ These are the URLs that will be used and generated by the project.
 
 Production URLs, from the branch `production`.
 
-- Frontend: https://{{cookiecutter.domain_main}}
-- Backend: https://{{cookiecutter.domain_main}}/api/
+- Front-end: https://{{cookiecutter.domain_main}}
+- Back-end: https://{{cookiecutter.domain_main}}/api/
 - Automatic Interactive Docs (Swagger UI): https://{{cookiecutter.domain_main}}/docs
 - Automatic Alternative Docs (ReDoc): https://{{cookiecutter.domain_main}}/redoc
 - PGAdmin: https://pgadmin.{{cookiecutter.domain_main}}
@@ -680,8 +713,8 @@ Production URLs, from the branch `production`.
 
 Staging URLs, from the branch `master`.
 
-- Frontend: https://{{cookiecutter.domain_staging}}
-- Backend: https://{{cookiecutter.domain_staging}}/api/
+- Front-end: https://{{cookiecutter.domain_staging}}
+- Back-end: https://{{cookiecutter.domain_staging}}/api/
 - Automatic Interactive Docs (Swagger UI): https://{{cookiecutter.domain_staging}}/docs
 - Automatic Alternative Docs (ReDoc): https://{{cookiecutter.domain_staging}}/redoc
 - PGAdmin: https://pgadmin.{{cookiecutter.domain_staging}}
@@ -691,8 +724,8 @@ Staging URLs, from the branch `master`.
 
 Development URLs, for local development.
 
-- Frontend: http://localhost
-- Backend: http://localhost/api/
+- Front-end: http://localhost
+- Back-end: http://localhost/api/
 - Automatic Interactive Docs (Swagger UI): https://localhost/docs
 - Automatic Alternative Docs (ReDoc): https://localhost/redoc
 - PGAdmin: http://localhost:5050
@@ -703,8 +736,8 @@ Development URLs, for local development.
 
 Development URLs, for local development.
 
-- Frontend: http://local.dockertoolbox.tiangolo.com
-- Backend: http://local.dockertoolbox.tiangolo.com/api/
+- Front-end: http://local.dockertoolbox.tiangolo.com
+- Back-end: http://local.dockertoolbox.tiangolo.com/api/
 - Automatic Interactive Docs (Swagger UI): https://local.dockertoolbox.tiangolo.com/docs
 - Automatic Alternative Docs (ReDoc): https://local.dockertoolbox.tiangolo.com/redoc
 - PGAdmin: http://local.dockertoolbox.tiangolo.com:5050
@@ -715,8 +748,8 @@ Development URLs, for local development.
 
 Development URLs, for local development.
 
-- Frontend: http://dev.{{cookiecutter.domain_main}}
-- Backend: http://dev.{{cookiecutter.domain_main}}/api/
+- Front-end: http://dev.{{cookiecutter.domain_main}}
+- Back-end: http://dev.{{cookiecutter.domain_main}}/api/
 - Automatic Interactive Docs (Swagger UI): https://dev.{{cookiecutter.domain_main}}/docs
 - Automatic Alternative Docs (ReDoc): https://dev.{{cookiecutter.domain_main}}/redoc
 - PGAdmin: http://dev.{{cookiecutter.domain_main}}:5050
@@ -727,8 +760,8 @@ Development URLs, for local development.
 
 Development URLs, for local development.
 
-- Frontend: http://localhost.tiangolo.com
-- Backend: http://localhost.tiangolo.com/api/
+- Front-end: http://localhost.tiangolo.com
+- Back-end: http://localhost.tiangolo.com/api/
 - Automatic Interactive Docs (Swagger UI): https://localhost.tiangolo.com/docs
 - Automatic Alternative Docs (ReDoc): https://localhost.tiangolo.com/redoc
 - PGAdmin: http://localhost.tiangolo.com:5050
