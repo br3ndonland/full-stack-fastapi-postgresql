@@ -14,7 +14,6 @@ Generate a backend and frontend stack using Python, including interactive API do
 - [How to use it](#how-to-use-it)
   - [Generate passwords](#generate-passwords)
   - [Input variables](#input-variables)
-- [How to deploy](#how-to-deploy)
 - [More details](#more-details)
 - [Sibling project generators](#sibling-project-generators)
 - [Release Notes](#release-notes)
@@ -155,12 +154,6 @@ The input variables, with their default values (some auto generated) are:
 - `docker_image_backend`: Docker image name for the backend. By default, it will be based on your Docker image prefix, e.g.: `git.example.com/development-team/my-awesome-project/backend`. And depending on your environment, a different tag will be appended ( `prod`, `stag`, `branch` ). So, the final image names used will be like: `git.example.com/development-team/my-awesome-project/backend:prod`.
 - `docker_image_celeryworker`: Docker image for the celery worker. By default, based on your Docker image prefix.
 - `docker_image_frontend`: Docker image for the frontend. By default, based on your Docker image prefix.
-
-## How to deploy
-
-This stack can be adjusted and used with several deployment options that are compatible with Docker Compose, but it is designed to be used in a cluster controlled with pure Docker in Swarm Mode with a Traefik main load balancer proxy handling automatic HTTPS certificates, using the ideas from <a href="https://dockerswarm.rocks" target="_blank">DockerSwarm.rocks</a>.
-
-Please refer to <a href="https://dockerswarm.rocks" target="_blank">DockerSwarm.rocks</a> to see how to deploy such a cluster in 20 minutes.
 
 ## More details
 
