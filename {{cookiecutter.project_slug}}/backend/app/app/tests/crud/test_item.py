@@ -37,9 +37,7 @@ def test_update_item():
     item = crud.item.create(db_session=db_session, item_in=item_in, owner_id=user.id)
     description2 = random_lower_string()
     item_update = ItemUpdate(description=description2)
-    item2 = crud.item.update(
-        db_session=db_session, item=item, item_in=item_update
-    )
+    item2 = crud.item.update(db_session=db_session, item=item, item_in=item_update)
     assert item.id == item2.id
     assert item.title == item2.title
     assert item2.description == description2
