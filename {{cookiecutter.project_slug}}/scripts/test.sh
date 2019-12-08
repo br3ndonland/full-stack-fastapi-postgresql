@@ -10,7 +10,7 @@ DOMAIN=backend \
   -f docker-compose.shared.depends.yml \
   -f docker-compose.deploy.build.yml \
   -f docker-compose.test.yml \
-  config > docker-stack.yml
+  config >docker-stack.yml
 
 docker-compose -f docker-stack.yml build
 # Remove possibly previous broken stacks left hanging after an error
