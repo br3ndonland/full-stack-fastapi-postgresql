@@ -59,7 +59,7 @@ def test_create_user_existing_username(superuser_token_headers):
     # username = email
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
-    user = crud.user.create(db_session, user_in=user_in)
+    user = crud.user.create(db_session, user_in=user_in)  # noqa: F841
     data = {"email": username, "password": password}
     r = requests.post(
         f"{server_api}{config.API_V1_STR}/users/",
@@ -76,7 +76,7 @@ def test_create_user_by_normal_user():
     username = random_lower_string()
     password = random_lower_string()
     user_in = UserCreate(email=username, password=password)
-    user = crud.user.create(db_session, user_in=user_in)
+    user = crud.user.create(db_session, user_in=user_in)  # noqa: F841
     user_token_headers = user_authentication_headers(server_api, username, password)
     data = {"email": username, "password": password}
     r = requests.post(
@@ -95,7 +95,7 @@ def test_retrieve_users(superuser_token_headers):
     username2 = random_lower_string()
     password2 = random_lower_string()
     user_in2 = UserCreate(email=username2, password=password2)
-    user2 = crud.user.create(db_session, user_in=user_in2)
+    user2 = crud.user.create(db_session, user_in=user_in2)  # noqa: F841
 
     r = requests.get(
         f"{server_api}{config.API_V1_STR}/users/", headers=superuser_token_headers
