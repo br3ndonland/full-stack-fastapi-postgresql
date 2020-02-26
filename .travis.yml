@@ -1,12 +1,17 @@
 sudo: required
 
 language: python
+cache:
+  pip: true
+  directories:
+    - $HOME/.cache/pre-commit
 
 install:
-  - pip install cookiecutter
+  - pip install cookiecutter pre-commit
 
 services:
   - docker
 
 script:
-- bash ./test.sh
+  - bash ./test.sh
+  - pre-commit run --all-files -c ./{{cookiecutter.project_slug}}/.pre-commit-config.yaml
